@@ -1,7 +1,10 @@
 FROM ubuntu:22.04
 
 RUN apt-get update
-RUN apt-get install -y nginx zip curl
+RUN apt install -y nginx git
+RUN rm -rf /var/www/html/*
+RUN git clone https://github.com/dariakalugny/Project-DevOps.git /var/www/html/
 
-RUN echo "daemon off;">>/etc/nginx/nginx.conf
-RUN curl -o /var/www/html/main.zip -L
+EXPOSE 80
+
+ENTRYPOINT ["/usr/sbin/nginx", "-g", "daemon off;"]
