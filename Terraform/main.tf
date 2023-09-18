@@ -1,6 +1,13 @@
 resource "aws_elastic_beanstalk_application" "tftest" {
   name        = "tf-test-name"
   description = "tf-test-desc"
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "S3_BUCKET"  # Environment variable used by Elastic Beanstalk
+    value     = "2048/Dockerfile"
+  }
+
 }
 
 resource "aws_elastic_beanstalk_environment" "Application2048-daria-shani" {
@@ -48,11 +55,7 @@ resource "aws_elastic_beanstalk_environment" "Application2048-daria-shani" {
     name      = "MinSize"
     value     = 1
   }
-  setting {
-    namespace = "aws:autoscaling:asg"
-    name      = "MaxSize"
-    value     = 2
-  }
+
   setting {
     namespace = "aws:autoscaling:asg"
     name      = "MaxSize"
@@ -64,11 +67,7 @@ resource "aws_elastic_beanstalk_environment" "Application2048-daria-shani" {
     value     = "enhanced"
   }
 
-    setting {
-    namespace = "aws:elasticbeanstalk:application:environment"
-    name      = "S3_BUCKET"  # Environment variable used by Elastic Beanstalk
-    value     = "2048/Dockerfile"
-  }
+
 
 
 
