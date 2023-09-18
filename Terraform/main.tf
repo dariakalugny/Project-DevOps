@@ -3,7 +3,7 @@ resource "aws_elastic_beanstalk_application" "tftest" {
   description = "tf-test-desc"
 }
 
-resource "aws_elastic_beanstalk_environment" "tfenvtest" {
+resource "aws_elastic_beanstalk_environment" "2048-application-daria-shani" {
   name                = "tf-test-name"
   application         = aws_elastic_beanstalk_application.tftest.name
   solution_stack_name = "64bit Amazon Linux 2023 v4.0.1 running Docker"
@@ -26,6 +26,18 @@ resource "aws_elastic_beanstalk_environment" "tfenvtest" {
     value     = "subnet-05deba43835a0d6c9"
   }
 
+    setting {
+    namespace = "aws:autoscaling:launchconfiguration"
+    name      = "IamInstanceProfile"
+    value     =  "ElasticBeanstalkApp"
+  }
+  setting {
+    namespace = "aws:ec2:vpc"
+    name      = "AssociatePublicIpAddress"
+    value     =  "True"
+  }
+
+
    setting {
     namespace = "aws:autoscaling:launchconfiguration"
     name      = "InstanceType"
@@ -41,7 +53,16 @@ resource "aws_elastic_beanstalk_environment" "tfenvtest" {
     name      = "MaxSize"
     value     = 2
   }
-
+  setting {
+    namespace = "aws:autoscaling:asg"
+    name      = "MaxSize"
+    value     = 2
+  }
+   setting {
+    namespace = "aws:elasticbeanstalk:healthreporting:system"
+    name      = "SystemType"
+    value     = "enhanced"
+  }
 
 
 
