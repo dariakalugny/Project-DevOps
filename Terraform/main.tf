@@ -64,6 +64,12 @@ resource "aws_elastic_beanstalk_environment" "Application2048-daria-shani" {
     value     = "enhanced"
   }
 
+    setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "S3_BUCKET"  # Environment variable used by Elastic Beanstalk
+    value     = "2048/Dockerfile"
+  }
+
 
 
 }
