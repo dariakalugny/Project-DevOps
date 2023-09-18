@@ -9,28 +9,20 @@ terraform {
   required_version = ">= 1.0.0"
 }
 
-
-
-provider "aws" {
-  region = "us-west-1"
-}
-
-
 resource "aws_elastic_beanstalk_application" "my_app" {
-  name = "2048"
+  name = "2048-application-terraform"
 }
 
 resource "aws_elastic_beanstalk_environment" "my_env" {
-  name                = "2048-game-terraform"
+  name                = "project-2048"
   application         = aws_elastic_beanstalk_application.my_app.name
   solution_stack_name = "64bit Amazon Linux 2 v4.5.2 running Python 3.8"
-  // Add other environment settings as needed
-}
 
-resource "aws_elastic_beanstalk_source_bundle" "my_app_source" {
-  application_name = aws_elastic_beanstalk_application.my_app.name
-  source_bundle {
-    s3_bucket = "project-daria-shani"
-    s3_key    = "s3://project-daria-shani/2048/Dockerfile"
+  setting {
+    namespace = "arn:aws:s3:::project-daria-shani/2048/Dockerfile"
+    name      = "project-daria-shani"  # Environment variable used by Elastic Beanstalk
+    value     = "2048/Dockerfile"  # Reference to the S3 bucket
   }
+
+  // Add other environment settings and resources as needed
 }
