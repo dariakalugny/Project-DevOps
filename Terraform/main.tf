@@ -3,7 +3,7 @@ resource "aws_elastic_beanstalk_application" "tftest" {
   description = "tf-test-desc"
 }
 
-resource "aws_elastic_beanstalk_environment" "2048-application-daria-shani" {
+resource "aws_elastic_beanstalk_environment" "Application2048-daria-shani" {
   name                = "tf-test-name"
   application         = aws_elastic_beanstalk_application.tftest.name
   solution_stack_name = "64bit Amazon Linux 2023 v4.0.1 running Docker"
