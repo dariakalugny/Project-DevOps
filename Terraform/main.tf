@@ -7,4 +7,43 @@ resource "aws_elastic_beanstalk_environment" "tfenvtest" {
   name                = "tf-test-name"
   application         = aws_elastic_beanstalk_application.tftest.name
   solution_stack_name = "64bit Amazon Linux 2023 v4.0.1 running Docker"
+   tier                = "webserver"
+
+  setting {
+    namespace = "aws:ec2:vpc"
+    name      = "VPCId"
+    value     = "vpc-0d37ae25adc984356"
+  }
+
+  setting {
+    namespace = "aws:ec2:vpc"
+    name      = "Subnets"
+    value     = "subnet-0eb0c47b5d27e872e"
+  }
+
+   setting {
+    namespace = "aws:ec2:vpc"
+    name      = "Subnets"
+    value     = "subnet-05deba43835a0d6c9"
+  }
+
+   setting {
+    namespace = "aws:autoscaling:launchconfiguration"
+    name      = "InstanceType"
+    value     = "t3.micro"
+  }
+   setting {
+    namespace = "aws:autoscaling:asg"
+    name      = "MinSize"
+    value     = 1
+  }
+  setting {
+    namespace = "aws:autoscaling:asg"
+    name      = "MaxSize"
+    value     = 2
+  }
+
+
+
+
 }
