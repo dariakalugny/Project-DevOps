@@ -1,28 +1,31 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "4.16"
-    }
-  }
 
-  required_version = ">= 1.0.0"
+provider "aws" {
+  region = var.aws_region
 }
 
 resource "aws_elastic_beanstalk_application" "my_app" {
-  name = "2048-application-terraform"
+  name        = var.eb_application_name
+  description = "My Elastic Beanstalk Application"
 }
 
 resource "aws_elastic_beanstalk_environment" "my_env" {
-  name                = "project-2048"
+  name                = var.eb_environment_name
   application         = aws_elastic_beanstalk_application.my_app.name
-  solution_stack_name = "64bit Amazon Linux 2 v4.5.2 running Python 3.8"
+  solution_stack_name = var.eb_solution_stack
+  # Add other environment settings as needed
+}
 
-  setting {
-    namespace = "arn:aws:s3:::project-daria-shani/2048/Dockerfile"
-    name      = "project-daria-shani"  # Environment variable used by Elastic Beanstalk
-    value     = "2048/Dockerfile"  # Reference to the S3 bucket
-  }
+resource "aws_s3_bucket" "my_app_bucket" {
+  bucket = var.s3_bucket_name
+  acl    = "private"
+}
 
-  // Add other environment settings and resources as needed
+# Deploy the application to Elastic Beanstalk environment
+resource "aws_elastic_beanstalk_application_version" "app_version" {
+  name        = "my-app-version"
+  description = "My Application Version"
+  application = aws_elastic_beanstalk_application.my_app.name
+
+  s3_bucket = aws_s3_bucket.my_app_bucket.id
+  s3_key    = "path/to/your/application.zip"
 }
