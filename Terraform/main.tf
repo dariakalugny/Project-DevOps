@@ -23,13 +23,9 @@ resource "aws_elastic_beanstalk_environment" "Application2048-daria-shani" {
   name                = "tf-test-name"
   application         = aws_elastic_beanstalk_application.tftest.name
   solution_stack_name = "64bit Amazon Linux 2023 v4.0.1 running Docker"
+  bucket      = "project-daria-shani"
+  key         = 2048/Dockerfile
 
-
-   setting {
-    namespace = "aws:elasticbeanstalk:application:environment"
-    name      = "project-daria-shani"
-    value     = "https://project-daria-shani.s3.us-west-1.amazonaws.com/2048/Dockerfile"
-  }
 
   setting {
     namespace = "aws:ec2:vpc"
