@@ -26,7 +26,7 @@ resource "aws_elastic_beanstalk_application" "test-2048" {
 resource "aws_elastic_beanstalk_environment" "Application2048-daria-shani" {
   name                = "test-2048"
   application         = aws_elastic_beanstalk_application.test-2048.name
-  solution_stack_name = "64bit Amazon Linux 2023 Node.js 18 running "
+  solution_stack_name = "64bit Amazon Linux 2023 Node.js 18 running"
 
 
 
