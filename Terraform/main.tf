@@ -17,14 +17,17 @@ resource "aws_elastic_beanstalk_application" "test-2048" {
   name        = "test-2048"
   description = "test-2048-daria-shani"
 
-}
-
-
- setting {
+   setting {
     namespace = "aws:elasticbeanstalk:application:environment"
     name      = "project-daria-shani"
     value     = "s3://project-daria-shani/2048/Dockerfile/"
   }
+
+
+}
+
+
+
 
 
 resource "aws_elastic_beanstalk_environment" "Application2048-daria-shani" {
