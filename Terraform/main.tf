@@ -23,8 +23,8 @@ resource "aws_elastic_beanstalk_application_version" "test-2048" {
   name        = "test-2048"
   application = "test-2048"
   description = "test-2048-daria-shani"
-  bucket      = game-2048
-  key         = game-2048
+  bucket      = project-daria-shani
+  key         = "s3://project-daria-shani/2048/Dockerfile"
 }
 
 
