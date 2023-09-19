@@ -62,6 +62,12 @@ resource "aws_elastic_beanstalk_environment" "Application2048-daria-shani" {
     value     = "enhanced"
   }
 
+    setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "project-daria-shani"
+    value     = "https://project-daria-shani.s3.us-west-1.amazonaws.com/2048/Dockerfile"
+  }
+
 
 
 
