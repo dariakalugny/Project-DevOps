@@ -13,18 +13,27 @@ terraform {
 
 
 
-resource "aws_elastic_beanstalk_application" "tftest" {
-  name        = "tf-test-name"
-  description = "tf-test-desc"
+resource "aws_elastic_beanstalk_application" "test-2048" {
+  name        = "test-2048"
+  description = "test-2048-daria-shani"
 
 }
 
+resource "aws_elastic_beanstalk_application_version" "test-2048" {
+  name        = "test-2048"
+  application = "test-2048"
+  description = "test-2048-daria-shani"
+  bucket      = game-2048
+  key         = game-2048
+}
+
+
 resource "aws_elastic_beanstalk_environment" "Application2048-daria-shani" {
-  name                = "tf-test-name"
-  application         = aws_elastic_beanstalk_application.tftest.name
+  name                = "test-2048"
+  application         = aws_elastic_beanstalk_application.test-2048.name
   solution_stack_name = "64bit Amazon Linux 2023 v4.0.1 running Docker"
-  bucket      = "project-daria-shani"
-  key         = 2048/Dockerfile
+  version_label = 1.0
+
 
 
   setting {
