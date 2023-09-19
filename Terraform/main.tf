@@ -25,7 +25,7 @@ resource "aws_elastic_beanstalk_application" "test-2048" {
   application = "test-2048"
   description = "test-2048-daria-shani"
   bucket      = "project-daria-shani"
-  key         = "https://project-daria-shani.s3.us-west-1.amazonaws.com/2048/Dockerfile"
+  key         = "s3://project-daria-shani/2048/Dockerfile/"
 }
 
 
