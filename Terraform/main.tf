@@ -10,16 +10,6 @@ terraform {
   required_version = ">= 1.0.0"
 }
 
-
-
-
-resource "aws_s3_object" "test-2048" {
-  bucket = "project-daria-shani"
-  key    = "2048/Dockerfile"
-  source = "Dockerfile"
-}
-
-
 resource "aws_elastic_beanstalk_application" "test-2048" {
   name        = "test-2048"
   description = "test-2048-daria-shani"
@@ -27,10 +17,16 @@ resource "aws_elastic_beanstalk_application" "test-2048" {
 }
 
 
+resource "aws_s3_object" "test-2048" {
+  bucket = "project-daria-shani"
+  key    = "2048/Dockerfile"
+  source = "2048"
+}
+
 
 resource "aws_elastic_beanstalk_application_version" "test-2048" {
   name        = "2048-version"
-  application = "2048-game"
+  application = "test-2048"
   description = "application version"
   bucket      = "project-daria-shani"
   key         = "2048/Dockerfile"
