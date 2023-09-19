@@ -1,12 +1,21 @@
+
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "4.16"
+    }
+  }
+
+  required_version = ">= 1.0.0"
+}
+
+
+
+
 resource "aws_elastic_beanstalk_application" "tftest" {
   name        = "tf-test-name"
   description = "tf-test-desc"
-
-  setting {
-    namespace = "aws:elasticbeanstalk:application:environment"
-    name      = "project-daria-shani"
-    value     = "https://project-daria-shani.s3.us-west-1.amazonaws.com/2048/Dockerfile"
-  }
 
 }
 
@@ -68,7 +77,11 @@ resource "aws_elastic_beanstalk_environment" "Application2048-daria-shani" {
   }
 
 
-
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "project-daria-shani"
+    value     = "https://project-daria-shani.s3.us-west-1.amazonaws.com/2048/Dockerfile"
+  }
 
 
 
