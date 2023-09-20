@@ -15,8 +15,6 @@ resource "aws_elastic_beanstalk_application" "test-2048" {
   name        = "test-2048"
   description = "test-2048-daria-shani"
 
-  Terraform   = true
-
 }
 
 
@@ -28,7 +26,7 @@ resource "aws_elastic_beanstalk_application_version" "test-2048" {
   bucket      = "project-daria-shani"
   key         = "2048/Dockerfile"
 
-  Terraform   = true
+
 }
 
 
@@ -99,8 +97,4 @@ resource "aws_elastic_beanstalk_environment" "Application2048-daria-shani" {
     name      = "project-daria-shani"
     value     = "s3://project-daria-shani/2048/Dockerfile/"
   }
-
-Terraform   = true
-
-
 }
