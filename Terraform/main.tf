@@ -11,17 +11,17 @@ terraform {
 }
 
 
-resource "aws_elastic_beanstalk_application" "Project-game-2048" {
-  name        = var.name
-  description = "Project-game-2048-daria-shani"
+resource "aws_elastic_beanstalk_application" "App-daria-shani" {
+  name        = "App2048-daria-shani"
+  description = "test-2048-daria-shani"
 
 }
 
 
 
-resource "aws_elastic_beanstalk_application_version" "Project-game-2048" {
+resource "aws_elastic_beanstalk_application_version" "App-daria-shani" {
   name        = "1.0"
-  application = var.name
+  application = "App2048-daria-shani"
   description = "application version"
   bucket      = "project-daria-shani"
   key         = "2048/Dockerfile"
@@ -30,11 +30,11 @@ resource "aws_elastic_beanstalk_application_version" "Project-game-2048" {
 
 
 
-resource "aws_elastic_beanstalk_environment" "Application2048-daria-shani" {
-  name                = var.name
-  application         = aws_elastic_beanstalk_application.Project-game-2048.name
+resource "aws_elastic_beanstalk_environment" "evn2048-daria-shani" {
+  name                = "App2048-daria-shani"
+  application         = aws_elastic_beanstalk_application.App-daria-shani.name
   solution_stack_name = "64bit Amazon Linux 2023 v4.0.1 running Docker"
-  version_label       = aws_elastic_beanstalk_application_version.Project-game-2048.name
+  version_label       = aws_elastic_beanstalk_application_version.App-daria-shani.name
 
 
 
