@@ -10,6 +10,33 @@ terraform {
   required_version = ">= 1.0.0"
 }
 
+
+
+# Create a S3 bucket to hosts the Dockerfile
+resource "aws_s3_bucket" "test-2048" {
+  bucket = "s3://project-daria-shani/2048/Dockerfile/"
+}
+
+
+resource "aws_s3_object" "test-2048" {
+  bucket = "project-daria-shani"
+  key    = "2048/Dockerfile"
+  source = "2048"
+}
+
+resource "aws_elastic_beanstalk_application_version" "test-2048" {
+  name        = "2048-version"
+  application = "test-2048"
+  description = "application version"
+  bucket      = "project-daria-shani"
+  key         = "2048/Dockerfile"
+}
+
+
+
+
+
+
 resource "aws_elastic_beanstalk_application" "test-2048" {
   name        = "test-2048"
   description = "test-2048-daria-shani"
@@ -17,13 +44,11 @@ resource "aws_elastic_beanstalk_application" "test-2048" {
 }
 
 
-
-
 resource "aws_elastic_beanstalk_environment" "Application2048-daria-shani" {
   name                = "test-2048"
   application         = aws_elastic_beanstalk_application.test-2048.name
   solution_stack_name = "64bit Amazon Linux 2023 v4.0.1 running Docker"
-  version_label       = "1.1"
+  version_label       = aws_elastic_beanstalk_application_version.test-2048.name
 
 
 
