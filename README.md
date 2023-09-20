@@ -2,7 +2,7 @@
 
 AWS Elastic Beanstalk helps to quickly deploy and manage applications in the AWS Cloud without having to worry about the infrastructure that runs those applications. reduces management complexity without restricting choice or control.
 
-![img.png](img.png)
+![img.png](pictures/img.png)
 
 enables automated infrastructure management and code deployment, by simply uploading, for applications and includes
 Application platform management,
@@ -23,7 +23,7 @@ Environment tier determines whether EB provisions resources to support
 2) Create a bucket in region and upload the Dockerfile to bucket.
 3) Deploy the application with Terraform.
 4) Enjoy the application.
-![img_1.png](img_1.png)
+![img_1.png](pictures/img_1.png)
 
 
 ## **AWS - CloudFormation service**
