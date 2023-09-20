@@ -12,7 +12,7 @@ terraform {
 
 
 resource "aws_elastic_beanstalk_application" "test-2048" {
-  name        = "App-2048"
+  name        = "test-2048"
   description = "test-2048-daria-shani"
 
 }
@@ -20,7 +20,7 @@ resource "aws_elastic_beanstalk_application" "test-2048" {
 
 
 resource "aws_elastic_beanstalk_application_version" "test-2048" {
-  name        = "version-1.0"
+  name        = "2048-version-1.4"
   application = "test-2048"
   description = "application version"
   bucket      = "project-daria-shani"
@@ -33,7 +33,7 @@ resource "aws_elastic_beanstalk_application_version" "test-2048" {
 
 
 resource "aws_elastic_beanstalk_environment" "Application2048-daria-shani" {
-  name                = "Env-2048"
+  name                = "test-2048"
   application         = aws_elastic_beanstalk_application.test-2048.name
   solution_stack_name = "64bit Amazon Linux 2023 v4.0.1 running Docker"
   version_label       = aws_elastic_beanstalk_application_version.test-2048.name
