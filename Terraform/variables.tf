@@ -1,7 +1,7 @@
 variable "name" {
-name = "test-2048"
+description = "Project-game-2048"
 type        = string
-
+default     = "dev"
 }
 
 

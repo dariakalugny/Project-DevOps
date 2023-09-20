@@ -21,7 +21,7 @@ resource "aws_elastic_beanstalk_application" "Project-game-2048" {
 
 resource "aws_elastic_beanstalk_application_version" "Project-game-2048" {
   name        = "1.0"
-  application = var.name
+  application = var.name.name
   description = "application version"
   bucket      = "project-daria-shani"
   key         = "2048/Dockerfile"
@@ -31,7 +31,7 @@ resource "aws_elastic_beanstalk_application_version" "Project-game-2048" {
 
 
 resource "aws_elastic_beanstalk_environment" "Application2048-daria-shani" {
-  name                = var.name
+  name                = var.name.name
   application         = aws_elastic_beanstalk_application.Project-game-2048.name
   solution_stack_name = "64bit Amazon Linux 2023 v4.0.1 running Docker"
   version_label       = aws_elastic_beanstalk_application_version.Project-game-2048.name
