@@ -17,7 +17,7 @@ resource "aws_elastic_beanstalk_application" "test-2048" {
 }
 # Create a S3 bucket to hosts the Dockerfile
 resource "aws_s3_bucket" "test-2048" {
-  bucket = "s3://project-daria-shani/2048/Dockerfile/"
+  bucket = "https://project-daria-shani.s3.us-west-1.amazonaws.com/2048/Dockerfile"
 }
 
 
@@ -102,11 +102,6 @@ resource "aws_elastic_beanstalk_environment" "Application2048-daria-shani" {
     value     = "enhanced"
   }
 
-   setting {
-    namespace = "aws:elasticbeanstalk:application:environment"
-    name      = "project-daria-shani"
-    value     = "s3://project-daria-shani/2048/Dockerfile/"
-  }
 
 
 
