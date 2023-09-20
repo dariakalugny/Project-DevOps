@@ -11,19 +11,6 @@ terraform {
 }
 
 
-
-# Create a S3 bucket to hosts the Dockerfile
-resource "aws_s3_bucket" "test-2048" {
-  bucket = "s3://project-daria-shani/2048/Dockerfile/"
-}
-
-
-resource "aws_s3_object" "test-2048" {
-  bucket = "project-daria-shani"
-  key    = "2048/Dockerfile"
-  source = "2048"
-}
-
 resource "aws_elastic_beanstalk_application_version" "test-2048" {
   name        = "2048-version"
   application = "test-2048"
