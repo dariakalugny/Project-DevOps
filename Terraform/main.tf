@@ -11,9 +11,6 @@ terraform {
 }
 
 
-
-
-
 resource "aws_elastic_beanstalk_application" "test-2048" {
   name        = "test-2048"
   description = "test-2048-daria-shani"
