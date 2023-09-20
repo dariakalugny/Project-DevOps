@@ -20,7 +20,7 @@ resource "aws_elastic_beanstalk_application" "test-2048" {
 
 
 resource "aws_elastic_beanstalk_application_version" "test-2048" {
-  name        = "2048-version-1.0"
+  name        = "version-1.0"
   application = "test-2048"
   description = "application version"
   bucket      = "project-daria-shani"
